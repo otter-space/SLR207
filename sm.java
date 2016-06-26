@@ -30,7 +30,7 @@ public class sm extends Thread {
             w.close();
     
             ProcessBuilder pb = new ProcessBuilder("bash", s.toString());
-            //pb.redirectOutput(ProcessBuilder.Redirect.appendTo(h));
+            pb.redirectOutput(ProcessBuilder.Redirect.appendTo(um));
             Process p = pb.start();
             p.waitFor();
 

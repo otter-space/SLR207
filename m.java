@@ -36,8 +36,10 @@ public class m {
             }
             for (i = 0; i < a_sm.size(); i++)
                 a_sm.get(i).start();
+
             for (i = 0; i < a_sm.size(); i++)
                 a_sm.get(i).join();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

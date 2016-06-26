@@ -10,13 +10,9 @@ public class s {
 
             String[] i = br.readLine().split(" ");
 
-            File j = new File(args[1]);
-            PrintWriter w = new PrintWriter(j, "UTF-8");
-
             for (String word : i)
-                w.println(word + ", 1");
+                System.out.println(word + ", 1");
 
-            w.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
