@@ -4,13 +4,15 @@ import java.util.*;
 public class sm extends Thread {
 
     String ip;
-    String j;
-    File h;
+    File sx;
+    File umx;
+    //File h; // Used to get a return, like "$ hostname"
 
-    sm(String ip, String j, File h) {
+    sm(String ip, File sx, int i) {
         this.ip = ip;
-        this.j = j;
-        this.h = h;
+        this.sx = sx;
+        umx = new File("umx_" + i);
+        //this.h = h;
     }
 
     public void run() {
@@ -23,11 +25,12 @@ public class sm extends Thread {
             w.println("#!/bin/bash");
             // useless on the school's cumputers
             // w.println("scp sm.jar decrevoisier@" + ip + ":");
-            w.println("ssh decrevoisier@" + ip + " java -jar hostname.jar");
+            w.println("ssh decrevoisier@" + ip + " java -jar s.jar " + sx
+                + " " + umx);
             w.close();
     
             ProcessBuilder pb = new ProcessBuilder("bash", s.toString());
-            pb.redirectOutput(ProcessBuilder.Redirect.appendTo(h));
+            //pb.redirectOutput(ProcessBuilder.Redirect.appendTo(h));
             Process p = pb.start();
             p.waitFor();
 
