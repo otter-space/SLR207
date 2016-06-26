@@ -20,7 +20,7 @@ public class m {
             BufferedReader br_i = new BufferedReader(isr_i);
 
             while ((in = br_i.readLine()) != null) {
-                sx.add(new File("sx_" + i));
+                sx.add(new File("s_" + i));
                 PrintWriter w = new PrintWriter(sx.get(i), "UTF-8");
                 w.println(in);
                 w.close();
