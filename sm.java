@@ -4,13 +4,13 @@ import java.util.*;
 public class sm extends Thread {
 
     String ip;
-    File s;
+    String sx;
     File um;
     //File h; // Used to get a return, like "$ hostname"
 
-    sm(String ip, File s, int i) {
+    sm(String ip, String sx, int i) {
         this.ip = ip;
-        this.s = s;
+        this.sx = sx;
         um = new File("um_" + i);
         //this.h = h;
     }
@@ -20,7 +20,7 @@ public class sm extends Thread {
             System.out.println("start " + ip);
             sleep(1000);
 
-            File s = new File("s" + ip);
+            File s = new File(sx);
             PrintWriter w = new PrintWriter(s, "UTF-8");
             w.println("#!/bin/bash");
             // useless on the school's cumputers

@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class m {
 
@@ -7,9 +7,9 @@ public class m {
         int i = 0;
         String ip = "";
         String in = "";
-        File h = new File("h");
         ArrayList<sm> a_sm = new ArrayList<sm>();
-        ArrayList<File> sx = new ArrayList<File>();
+        ArrayList<String> sx = new ArrayList<String>();
+        HashMap<String, Integer> k = new HashMap<String, Integer>();
         try {
             FileInputStream fis_lh = new FileInputStream("list_hosts");
             InputStreamReader isr_lh = new InputStreamReader(fis_lh, "UTF-8");
@@ -20,8 +20,8 @@ public class m {
             BufferedReader br_i = new BufferedReader(isr_i);
 
             while ((in = br_i.readLine()) != null) {
-                sx.add(new File("s_" + i));
-                PrintWriter w = new PrintWriter(sx.get(i), "UTF-8");
+                sx.add("s_" + i);
+                PrintWriter w = new PrintWriter("s_" + i, "UTF-8");
                 w.println(in);
                 w.close();
                 i++;
@@ -34,11 +34,32 @@ public class m {
                 a_sm.add(new sm(ip, sx.get(i), i));
                 i++;
             }
-            for (i = 0; i < a_sm.size(); i++)
+
+            int sz = a_sm.size();
+
+            for (i = 0; i < sz; i++)
                 a_sm.get(i).start();
 
-            for (i = 0; i < a_sm.size(); i++)
+            for (i = 0; i < sz; i++)
                 a_sm.get(i).join();
+
+            for (i = 0; i < sz; i++) {
+                FileInputStream fis = new FileInputStream("s_" + i + "_dico");
+                InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+                BufferedReader br = new BufferedReader(isr);
+
+                /* TODO
+                 * add several integers (umx) to one key
+                 */
+                String s = "";
+                while ((s = br.readLine()) != null)
+                    k.put(s, i);
+                br.close();
+            }
+            
+            for (i = 0; i < sz; i++) {
+                
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
