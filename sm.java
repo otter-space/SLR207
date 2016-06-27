@@ -25,8 +25,7 @@ public class sm extends Thread {
             w.println("#!/bin/bash");
             // useless on the school's cumputers
             // w.println("scp sm.jar decrevoisier@" + ip + ":");
-            w.println("ssh decrevoisier@" + ip + " java -jar s.jar " + s
-                + " " + um);
+            w.println("ssh decrevoisier@" + ip + " java -jar s.jar " + s);
             w.close();
     
             ProcessBuilder pb = new ProcessBuilder("bash", s.toString());
