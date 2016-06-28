@@ -65,6 +65,7 @@ public class m {
 
             System.out.println("Sx - Umx");
             System.out.println(k);
+            System.out.println("Done");
 
         } catch (Exception e) {
             e.printStackTrace();
