@@ -94,6 +94,10 @@ public class m {
 
             for (i = 0; i < sz; i++)
                 b_sm.get(i).join();
+
+            /* Assembling */
+            System.out.println("Assembling");
+            /* TODO */
             
             System.out.println("Done");
 
