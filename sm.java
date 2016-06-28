@@ -4,29 +4,32 @@ import java.util.*;
 public class sm extends Thread {
 
     String ip;
-    String sx;
-    File um;
+    String[] arg;
+    File ret;
 
-    sm(String ip, String sx, int i) {
+    sm(String ip, String[] arg) {
         this.ip = ip;
-        this.sx = sx;
-        um = new File("um_" + i);
+        this.arg = arg;
+        ret = new File(arg[0]);
     }
 
+    /* ret args */
     public void run() {
         try {
-            System.out.println("start " + ip + " " + sx);
+            System.out.println("start " + ip + " " + ret.getName());
 
-            File s = new File("script_" + sx);
+            File s = new File("script_" + ret.getName());
             PrintWriter w = new PrintWriter(s, "UTF-8");
             w.println("#!/bin/bash");
             // useless on the school's cumputers
             // w.println("scp sm.jar decrevoisier@" + ip + ":");
-            w.println("ssh decrevoisier@" + ip + " java -jar s.jar " + sx);
+            w.println("ssh decrevoisier@" + ip + " java -jar s.jar ");
+            for (int i = 1; i < arg.length; i++)
+                w.print(arg[i] + " ");
             w.close();
     
             ProcessBuilder pb = new ProcessBuilder("bash", s.toString());
-            pb.redirectOutput(ProcessBuilder.Redirect.to(um));
+            pb.redirectOutput(ProcessBuilder.Redirect.to(ret));
             Process p = pb.start();
             p.waitFor();
 

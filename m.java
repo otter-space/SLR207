@@ -11,6 +11,7 @@ public class m {
         ArrayList<String> sx = new ArrayList<String>();
         HashMap<String, ArrayList<Integer>> k =
             new HashMap<String, ArrayList<Integer>>();
+        ArrayList<String> h = new ArrayList<String>();
 
         try {
             FileInputStream fis_lh = new FileInputStream("list_hosts");
@@ -34,9 +35,12 @@ public class m {
                 System.out.println(in);
             }
             
-            i = 0;
-            while ((ip = br_lh.readLine()) != null) {
-                a_sm.add(new sm(ip, sx.get(i), i));
+            while ((ip = br_lh.readLine()) != null)
+                h.add(ip);
+
+            for (i = 0; i < sx.size(); i++) {
+                String[] arg = {"um_" + i, sx.get(i)};
+                a_sm.add(new sm(h.get(i % h.size()), arg));
                 i++;
             }
 
@@ -65,6 +69,9 @@ public class m {
 
             System.out.println("Sx - Umx");
             System.out.println(k);
+            
+
+
             System.out.println("Done");
 
         } catch (Exception e) {
