@@ -9,7 +9,8 @@ public class m {
         String in = "";
         ArrayList<sm> a_sm = new ArrayList<sm>();
         ArrayList<String> sx = new ArrayList<String>();
-        HashMap<String, Integer> k = new HashMap<String, Integer>();
+        HashMap<String, ArrayList<Integer>> k =
+            new HashMap<String, ArrayList<Integer>>();
         try {
             FileInputStream fis_lh = new FileInputStream("list_hosts");
             InputStreamReader isr_lh = new InputStreamReader(fis_lh, "UTF-8");
@@ -43,22 +44,25 @@ public class m {
             for (i = 0; i < sz; i++)
                 a_sm.get(i).join();
 
+            /* Sx - Umx */
             for (i = 0; i < sz; i++) {
                 FileInputStream fis = new FileInputStream("s_" + i + "_dico");
                 InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
                 BufferedReader br = new BufferedReader(isr);
 
-                /* TODO
-                 * add several integers (umx) to one key
-                 */
                 String s = "";
-                while ((s = br.readLine()) != null)
-                    k.put(s, i);
+                while ((s = br.readLine()) != null) {
+                    if (!k.containsKey(s))
+                        k.put(s, new ArrayList<Integer>());
+                    k.get(s).add(i);
+                }
                 br.close();
             }
-            
-            for (i = 0; i < sz; i++) {
-                
+
+            System.out.println("Sx - Umx");
+            for (String key : k.keySet()) {
+                System.out.println(k + ": ");
+                System.out.println(k.get(key));
             }
 
         } catch (Exception e) {
