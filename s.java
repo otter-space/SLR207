@@ -15,7 +15,7 @@ public class s {
             PrintWriter pw = new PrintWriter(s, "UTF-8");
 
             String[] i = br.readLine().split(" ");
-
+            
             for (String word : i) {
                 System.out.println(word + " 1");
                 k.add(word);

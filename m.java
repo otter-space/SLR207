@@ -4,13 +4,14 @@ import java.util.*;
 public class m {
 
     public static void main(String[] args) {
-        int i = 0;
+        int i;
         String ip = "";
         String in = "";
         ArrayList<sm> a_sm = new ArrayList<sm>();
         ArrayList<String> sx = new ArrayList<String>();
         HashMap<String, ArrayList<Integer>> k =
             new HashMap<String, ArrayList<Integer>>();
+
         try {
             FileInputStream fis_lh = new FileInputStream("list_hosts");
             InputStreamReader isr_lh = new InputStreamReader(fis_lh, "UTF-8");
@@ -20,11 +21,14 @@ public class m {
             InputStreamReader isr_i = new InputStreamReader(fis_i, "UTF-8");
             BufferedReader br_i = new BufferedReader(isr_i);
 
+            i = 0;
             while ((in = br_i.readLine()) != null) {
+                if (in == "\n" || in == null)
+                    break;
                 sx.add("s_" + i);
-                PrintWriter w = new PrintWriter("s_" + i, "UTF-8");
-                w.println(in);
-                w.close();
+                PrintWriter mw = new PrintWriter(new File("s_" + i), "UTF-8");
+                mw.println(in);
+                mw.close();
                 i++;
 
                 System.out.println(in);
@@ -60,10 +64,7 @@ public class m {
             }
 
             System.out.println("Sx - Umx");
-            for (String key : k.keySet()) {
-                System.out.println(k + ": ");
-                System.out.println(k.get(key));
-            }
+            System.out.println(k);
 
         } catch (Exception e) {
             e.printStackTrace();
