@@ -8,6 +8,7 @@ public class m {
         String ip = "";
         String in = "";
         ArrayList<sm> a_sm = new ArrayList<sm>();
+        ArrayList<sm> b_sm = new ArrayList<sm>();
         ArrayList<String> sx = new ArrayList<String>();
         HashMap<String, ArrayList<Integer>> k =
             new HashMap<String, ArrayList<Integer>>();
@@ -22,6 +23,8 @@ public class m {
             InputStreamReader isr_i = new InputStreamReader(fis_i, "UTF-8");
             BufferedReader br_i = new BufferedReader(isr_i);
 
+            /* Splitting */
+            System.out.println("Splitting");
             i = 0;
             while ((in = br_i.readLine()) != null) {
                 if (in == "\n" || in == null)
@@ -38,10 +41,11 @@ public class m {
             while ((ip = br_lh.readLine()) != null)
                 h.add(ip);
 
+            /* Mapping */
+            System.out.println("Mapping");
             for (i = 0; i < sx.size(); i++) {
                 String[] arg = {"um_" + i, sx.get(i)};
                 a_sm.add(new sm(h.get(i % h.size()), arg));
-                i++;
             }
 
             int sz = a_sm.size();
@@ -52,7 +56,6 @@ public class m {
             for (i = 0; i < sz; i++)
                 a_sm.get(i).join();
 
-            /* Sx - Umx */
             for (i = 0; i < sz; i++) {
                 FileInputStream fis = new FileInputStream("s_" + i + "_dico");
                 InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
@@ -70,14 +73,33 @@ public class m {
             System.out.println("Sx - Umx");
             System.out.println(k);
             
+            /* Shuffling & Reducing */
+            System.out.println("Shuffling & Reducing");
+            i = 0;
+            for (String key : k.keySet()) {
+                ArrayList<String> arg = new ArrayList<String>();
+                arg.add(key);
+                arg.add(key);
+                for (Integer i_tmp : k.get(key))
+                    arg.add("um_" + i_tmp);
+                String[] as_arg = new String[arg.size()];
+                arg.toArray(as_arg);
+                b_sm.add(new sm(h.get(i++ % h.size()), as_arg));
+            }
 
+            sz = b_sm.size();
 
+            for (i = 0; i < sz; i++)
+                b_sm.get(i).start();
+
+            for (i = 0; i < sz; i++)
+                b_sm.get(i).join();
+            
             System.out.println("Done");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("Done.\n");
     }
 }
 

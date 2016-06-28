@@ -12,8 +12,8 @@ public class s {
                 InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
                 BufferedReader br = new BufferedReader(isr);
     
-                File s = new File(args[0] + "_dico");
-                PrintWriter pw = new PrintWriter(s, "UTF-8");
+                File sd = new File(args[0] + "_dico");
+                PrintWriter pw = new PrintWriter(sd, "UTF-8");
     
                 String[] i = br.readLine().split(" ");
                 
