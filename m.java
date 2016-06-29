@@ -4,6 +4,8 @@ import java.util.*;
 public class m {
 
     public static void main(String[] args) {
+        long t_start = System.currentTimeMillis();
+
         int i;
         String ip = "";
         String in = "";
@@ -23,6 +25,7 @@ public class m {
             InputStreamReader isr_i = new InputStreamReader(fis_i, "UTF-8");
             BufferedReader br_i = new BufferedReader(isr_i);
 
+            long t_s = System.currentTimeMillis();
             /* Splitting */
             System.out.println("Splitting");
             i = 0;
@@ -41,6 +44,7 @@ public class m {
             while ((ip = br_lh.readLine()) != null)
                 h.add(ip);
 
+            long t_m = System.currentTimeMillis();
             /* Mapping */
             System.out.println("Mapping");
             for (i = 0; i < sx.size(); i++) {
@@ -73,6 +77,7 @@ public class m {
             System.out.println("Sx - Umx");
             System.out.println(k);
             
+            long t_sr = System.currentTimeMillis();
             /* Shuffling & Reducing */
             System.out.println("Shuffling & Reducing");
             i = 0;
@@ -95,6 +100,7 @@ public class m {
             for (i = 0; i < sz; i++)
                 b_sm.get(i).join();
 
+            long t_as = System.currentTimeMillis();
             /* Assembling */
             System.out.println("Assembling");
             File as = new File("output.txt");
@@ -109,8 +115,14 @@ public class m {
             }
             pw_as.close();
             
+            long t_end = System.currentTimeMillis();
             System.out.println("Done");
 
+            System.out.println("Start: " + (t_s - t_start));
+            System.out.println("Splitting: " + (t_m - t_s));
+            System.out.println("Mapping: " + (t_sr - t_m));
+            System.out.println("Shuffling & Reducing: " + (t_as - t_sr));
+            System.out.println("Assembling: " + (t_end - t_as));
         } catch (Exception e) {
             e.printStackTrace();
         }
