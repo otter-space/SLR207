@@ -30,8 +30,8 @@ public class m {
             System.out.println("Splitting");
             i = 0;
             while ((in = br_i.readLine()) != null) {
-                if (in == "\n" || in == null)
-                    break;
+                if (in.matches("\\s*"))
+                    continue;
                 sx.add("s_" + i);
                 PrintWriter mw = new PrintWriter(new File("s_" + i), "UTF-8");
                 mw.println(in);
