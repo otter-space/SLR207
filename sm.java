@@ -14,8 +14,8 @@ public class sm extends Thread {
     /* ret args */
     public void run() {
         try {
-            System.out.println("start " + ip + " " + ret.getName());
             File ret = new File(arg[0]);
+            System.out.println("start " + ip + " " + ret.getName());
 
             File s = new File("script_" + ret.getName());
             PrintWriter w = new PrintWriter(s, "UTF-8");

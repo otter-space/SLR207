@@ -97,7 +97,17 @@ public class m {
 
             /* Assembling */
             System.out.println("Assembling");
-            /* TODO */
+            File as = new File("output.txt");
+            PrintWriter pw_as = new PrintWriter(as);
+            for (String key : k.keySet()) {
+                FileInputStream fis = new FileInputStream(key);
+                InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+                BufferedReader br = new BufferedReader(isr);
+
+                pw_as.println(key + ", " + br.readLine());
+                br.close();
+            }
+            pw_as.close();
             
             System.out.println("Done");
 
