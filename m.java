@@ -27,7 +27,7 @@ public class m {
 
             long t_s = System.currentTimeMillis();
             /* Splitting */
-            System.out.println("Splitting");
+            System.out.println("### Splitting ###");
             i = 0;
             while ((in = br_i.readLine()) != null) {
                 if (in.matches("\\s*"))
@@ -46,7 +46,7 @@ public class m {
 
             long t_m = System.currentTimeMillis();
             /* Mapping */
-            System.out.println("Mapping");
+            System.out.println("### Mapping ###");
             for (i = 0; i < sx.size(); i++) {
                 String[] arg = {"um_" + i, sx.get(i)};
                 a_sm.add(new sm(h.get(i % h.size()), arg));
@@ -74,12 +74,12 @@ public class m {
                 br.close();
             }
 
-            System.out.println("Sx - Umx");
+            System.out.print("Sx - Umx: ");
             System.out.println(k);
             
             long t_sr = System.currentTimeMillis();
             /* Shuffling & Reducing */
-            System.out.println("Shuffling & Reducing");
+            System.out.println("### Shuffling & Reducing ###");
             i = 0;
             for (String key : k.keySet()) {
                 ArrayList<String> arg = new ArrayList<String>();
@@ -102,7 +102,7 @@ public class m {
 
             long t_as = System.currentTimeMillis();
             /* Assembling */
-            System.out.println("Assembling");
+            System.out.println("### Assembling ###");
             File as = new File("output.txt");
             PrintWriter pw_as = new PrintWriter(as);
             for (String key : k.keySet()) {
@@ -118,11 +118,11 @@ public class m {
             long t_end = System.currentTimeMillis();
             System.out.println("Done");
 
-            System.out.println("Start: " + (t_s - t_start));
-            System.out.println("Splitting: " + (t_m - t_s));
-            System.out.println("Mapping: " + (t_sr - t_m));
+            System.out.println("Start:                " + (t_s - t_start));
+            System.out.println("Splitting:            " + (t_m - t_s));
+            System.out.println("Mapping:              " + (t_sr - t_m));
             System.out.println("Shuffling & Reducing: " + (t_as - t_sr));
-            System.out.println("Assembling: " + (t_end - t_as));
+            System.out.println("Assembling:           " + (t_end - t_as));
         } catch (Exception e) {
             e.printStackTrace();
         }
